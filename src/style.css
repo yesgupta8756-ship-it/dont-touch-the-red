@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&display=swap');
+
+:root {
+  --bg-color: #04050d;
+  --neon-cyan: #00f0ff;
+  --neon-red: #ff0055;
+  --neon-blue: #0077ff;
+  --neon-amber: #ffaa00;
+  --text-main: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  background: radial-gradient(circle at 50% 35%, #0f1430 0%, #060715 55%, #020208 100%);
+  font-family: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-main);
+  touch-action: none;
+}
+
+/* Subtle background cyber vignette & ambient glow */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(0, 240, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(255, 0, 85, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+#game-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Responsive Arcade Frame */
+canvas {
+  box-shadow: 
+    0 0 0 1px rgba(0, 240, 255, 0.25),
+    0 0 35px rgba(0, 240, 255, 0.15),
+    0 0 80px rgba(255, 0, 85, 0.08),
+    0 15px 45px rgba(0, 0, 0, 0.85);
+  border-radius: 12px;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+@media (max-width: 768px) {
+  #game-container {
+    padding: 0;
+  }
+  canvas {
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* Loading Screen Fallback */
+.game-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.1rem;
+  letter-spacing: 4px;
+  font-weight: 700;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 12px var(--neon-cyan);
+  pointer-events: none;
+  display: none;
+}
